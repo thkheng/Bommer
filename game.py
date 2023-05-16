@@ -34,6 +34,20 @@ GRID_BASE = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
              [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
              [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 
+GRID_BASE1 = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+             [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+             [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+             [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1],
+             [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+             [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+             [1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1],
+             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+
 
 def game_init(surface, path, player_alg, en1_alg, en2_alg, en3_alg, scale):
 
@@ -94,14 +108,28 @@ def game_init(surface, path, player_alg, en1_alg, en2_alg, en3_alg, scale):
     box_img = pygame.image.load('images/terrain/box.png')
     box_img = pygame.transform.scale(box_img, (scale, scale))
 
-    bomb1_img = pygame.image.load('images/bomb/1.png')
+    bomb1_img = pygame.image.load('images/bomb/boom1.png')
     bomb1_img = pygame.transform.scale(bomb1_img, (scale, scale))
 
-    bomb2_img = pygame.image.load('images/bomb/2.png')
+    bomb2_img = pygame.image.load('images/bomb/boom2.png')
     bomb2_img = pygame.transform.scale(bomb2_img, (scale, scale))
 
-    bomb3_img = pygame.image.load('images/bomb/3.png')
+    bomb3_img = pygame.image.load('images/bomb/boom3.png')
     bomb3_img = pygame.transform.scale(bomb3_img, (scale, scale))
+    bomb4_img = pygame.image.load('images/bomb/boom4.png')
+    bomb4_img = pygame.transform.scale(bomb4_img, (scale, scale))
+    
+    bomb5_img = pygame.image.load('images/bomb/boom5.png')
+    bomb5_img = pygame.transform.scale(bomb5_img, (scale, scale))
+    
+    bomb6_img = pygame.image.load('images/bomb/boom6.png')
+    bomb6_img = pygame.transform.scale(bomb6_img, (scale, scale))
+    
+    bomb7_img = pygame.image.load('images/bomb/boom7.png')
+    bomb7_img = pygame.transform.scale(bomb7_img, (scale, scale))
+    
+    bomb8_img = pygame.image.load('images/bomb/boom8.png')
+    bomb8_img = pygame.transform.scale(bomb8_img, (scale, scale))
 
     explosion1_img = pygame.image.load('images/explosion/1.png')
     explosion1_img = pygame.transform.scale(explosion1_img, (scale, scale))
@@ -113,7 +141,7 @@ def game_init(surface, path, player_alg, en1_alg, en2_alg, en3_alg, scale):
     explosion3_img = pygame.transform.scale(explosion3_img, (scale, scale))
 
     terrain_images = [grass_img, block_img, box_img, grass_img]
-    bomb_images = [bomb1_img, bomb2_img, bomb3_img]
+    bomb_images = [bomb1_img, bomb2_img, bomb3_img,bomb4_img,bomb5_img,bomb6_img,bomb7_img,bomb8_img]
     explosion_images = [explosion1_img, explosion2_img, explosion3_img]
 
     power_up_bomb_img = pygame.image.load('images/power_up/bomb.png')
@@ -180,8 +208,12 @@ def generate_map(grid):
 
 
 def main(s, tile_size, show_path, terrain_images, bomb_images, explosion_images, power_ups_images):
+    t = random.randint(1,2)
+    if(t==1) :
+         grid = [row[:] for row in GRID_BASE1]
+    if(t==2):
+         grid = [row[:] for row in GRID_BASE]
 
-    grid = [row[:] for row in GRID_BASE]
     generate_map(grid)
     # power_ups.append(PowerUp(1, 2, PowerUpType.BOMB))
     # power_ups.append(PowerUp(2, 1, PowerUpType.FIRE))
@@ -227,6 +259,7 @@ def main(s, tile_size, show_path, terrain_images, bomb_images, explosion_images,
 
         if not game_ended:
             game_ended = check_end_game()
+                
 
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
