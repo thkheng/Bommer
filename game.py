@@ -1,7 +1,9 @@
 import pygame
 import sys
 import random
+import tkinter as tk
 
+from tkinter import messagebox
 from enums.power_up_type import PowerUpType
 from player import Player
 from explosion import Explosion
@@ -187,9 +189,7 @@ def draw(s, grid, tile_size, show_path, game_ended, terrain_images, bomb_images,
                         pygame.draw.rect(s, (255, 0, 255, 240),
                                          [sek[0] * tile_size, sek[1] * tile_size, tile_size, tile_size], 1)
 
-    if game_ended:
-        tf = font.render("Press ESC to go back to menu", False, (153, 153, 255))
-        s.blit(tf, (10, 10))
+        
 
     pygame.display.update()
 
@@ -259,6 +259,11 @@ def main(s, tile_size, show_path, terrain_images, bomb_images, explosion_images,
 
         if not game_ended:
             game_ended = check_end_game()
+            if(game_ended == True):
+                window = tk.Tk()
+                window.withdraw()
+                result = messagebox.showinfo("You Lose","Bạn đã thua")
+                running = False
                 
 
         for e in pygame.event.get():
