@@ -92,8 +92,8 @@ def menu_loop():
         width=int(WINDOW_SIZE[0] * WINDOW_SCALE),
         title='Options'
     )
-    play_options.add.selector("Character 1", [("Player", Algorithm.PLAYER), ("DFS", Algorithm.DFS),
-                                              ("DIJKSTRA", Algorithm.DIJKSTRA), ("None", Algorithm.NONE)], onchange=change_player)
+    play_options.add.selector("Character 1", [("Player", Algorithm.PLAYER)])
+    
     play_options.add.selector("Character 2", [("DIJKSTRA", Algorithm.DIJKSTRA), ("DFS", Algorithm.DFS),
                                               ("None", Algorithm.NONE)], onchange=change_enemy1)
     play_options.add.selector("Character 3", [("DIJKSTRA", Algorithm.DIJKSTRA), ("DFS", Algorithm.DFS),
