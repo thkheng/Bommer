@@ -132,7 +132,6 @@ def menu_loop():
     about_menu.add.label("Movement: Arrows")
     about_menu.add.label("Plant bomb: Space")
     about_menu.add.label("Author: 5 Than Dang")
-    
     about_menu.add.vertical_margin(25)
     about_menu.add.button('Return  to  main  menu', pygame_menu.events.BACK)
 
